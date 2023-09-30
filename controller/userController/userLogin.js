@@ -55,7 +55,7 @@ exports.userLogIn = async (req, res, next) => {
                 message: "user login failed",
             });
         }
-    } catch {
+    } catch(error) {
         console.log(error);
         res.status(500).json({
             message: "Internal Server Error",

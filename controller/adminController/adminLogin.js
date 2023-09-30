@@ -59,7 +59,7 @@ exports.adminLogIn = async (req, res, next) => {
                 message: "admin login failed",
             });
         }
-    } catch {
+    } catch(error) {
         console.log(error);
         res.status(500).json({
             message: "Internal Server Error",
