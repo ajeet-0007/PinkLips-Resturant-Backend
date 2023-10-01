@@ -48,7 +48,7 @@ exports.adminLogIn = async (req, res, next) => {
         if (passwordComparedResult) {
             const token = await jwt.sign(
                 { admin_email: requestData.admin_email },
-                process.env.SECRET_KEY
+                process.env.ADMIN_SECRET_KEY
             );
             return res.status(200).json({
                 message: "admin login successful",

@@ -45,7 +45,7 @@ exports.userLogIn = async (req, res, next) => {
             result[0].user_password
         );
         if (passwordComparedResult) {
-            const token = await jwt.sign({user_email: requestData.user_email}, process.env.SECRET_KEY)
+            const token = await jwt.sign({user_email: requestData.user_email}, process.env.USER_SECRET_KEY)
             return res.status(200).json({
                 message: "user login successful",
                 accessToken : token

@@ -1,12 +1,10 @@
-const sequelize = require('../../models/config')
-const XLSX = require("xlsx");
+const sequelize = require('../../models/config');
 const fs = require("fs");
 const csv = require("fast-csv");
 
 exports.adminProductUpload =  async (req, res, next)=>{
     try {
         		const file = __dirname + "/uploads/" + req.file.filename;
-                console.log(file);
                 let stream = fs.createReadStream(file);
                 let csvData = [];
                 let fileStream = csv.parse()
@@ -17,7 +15,7 @@ exports.adminProductUpload =  async (req, res, next)=>{
                         csvData.shift();
                         await sequelize
                             .query(
-                                "INSERT INTO products (productId, product_name, product_price_small, product_price_large, product_description, product_image ) VALUES ?",
+                                "INSERT INTO products (productId,product_category, product_name, product_price_small, product_price_large, product_description, product_image ) VALUES ?",
                                 {
                                     replacements: [csvData],
                                     // type: Sequelize.QueryTypes.RAW,

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const adminLogin = require("../../controller/adminController/adminLogin");
 const adminProductUpload = require('../../controller/adminController/adminProductUpload');
-const authorize = require('../../middlewares/authorize')
+const authorize = require('../../middlewares/adminAuthorize')
 const upload = require('../../middlewares/productsUpload')
 
 router.post("/sign-up", adminLogin.adminSignUp);
