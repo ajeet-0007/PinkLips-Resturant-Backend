@@ -4,6 +4,9 @@ const userSignUp = require("../../controller/userController/userLogin");
 const allProductForUser = require("../../controller/userController/userProducts");
 const getProductsByCategory = require("../../controller/userController/userDashboardProducts");
 const authorize = require("../../middlewares/userAuthorize");
+const {
+    userGetProductsById,
+} = require("../../controller/userController/userGetProductsById");
 
 router.post("/sign-up", userSignUp.userSignUp);
 
@@ -116,7 +119,13 @@ router.get(
 router.get(
     "/get-ice-cream-category",
     authorize.authorize,
-    getProductsByCategory.userDashboardGetIceCreamCategory
+    getProductsByCategory.userDashboardGetIceCreamCategory 
+);
+
+router.post(
+    "/get-products-by-id/:productId",
+    authorize.authorize,
+    userGetProductsById
 );
 
 module.exports = router;

@@ -4,6 +4,7 @@ const {Sequelize} = require('sequelize');
 exports.getAllProductsForUser = async (req, res) => {
     try {
         const results = await sequelize.query("CALL get_all_products()", {
+            
             type: Sequelize.QueryTypes.RAW,
         });
         if(results.length){

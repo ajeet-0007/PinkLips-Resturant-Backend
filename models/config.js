@@ -13,8 +13,9 @@ const sequelize = new Sequelize(
     DATABASE_PASSWORD,
     {
         host: DATABASE_HOST,
+        port: 3306,
         dialect: "mysql",
-        logging: false
+        logging: false,
     }
 );
 
