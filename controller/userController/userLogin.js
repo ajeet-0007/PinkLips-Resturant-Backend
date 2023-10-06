@@ -9,10 +9,9 @@ exports.userSignUp = async (req, res, next) => {
         const requestData = req.body;
         const password = await bcrypt.hash(req.body.user_password, 10);
         const [result] = await sequelize.query(
-            "CALL InsertUser(?, ?, ?, ?, ?, ?, @p_success)",
+            "CALL InsertUser(?, ?, ?, ?, ?, @p_success)",
             {
                 replacements: [
-                    requestData.userId, 
                     requestData.user_name,
                     requestData.user_email,
                     requestData.user_phone_number,

@@ -9,10 +9,9 @@ exports.adminSignUp = async (req, res, next) => {
         const requestData = req.body;
         const password = await bcrypt.hash(req.body.admin_password, 10);
         const [result] = await sequelize.query(
-            "CALL InsertAdmin(?, ?, ?, ?, ?, ?, @p_success)",
+            "CALL InsertAdmin(?, ?, ?, ?, ?, @p_success)",
             {
                 replacements: [
-                    requestData.adminId,
                     requestData.admin_name,
                     requestData.admin_email,
                     requestData.admin_phone_number,
