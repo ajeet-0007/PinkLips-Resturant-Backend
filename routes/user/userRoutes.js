@@ -3,6 +3,7 @@ const router = express.Router();
 const userSignUp = require("../../controller/userController/userLogin");
 const allProductForUser = require("../../controller/userController/userProducts");
 const getProductsByCategory = require("../../controller/userController/userDashboardProducts");
+const postUserOrderProduct = require('../../controller/userController/userProductOrder')
 const authorize = require("../../middlewares/userAuthorize");
 const {
     userGetProductsById,
@@ -127,6 +128,8 @@ router.post(
     authorize.authorize,
     userGetProductsById
 );
+
+router.post('/order-items', authorize.authorize, postUserOrderProduct.userProductOrder)
 
 module.exports = router;
 
