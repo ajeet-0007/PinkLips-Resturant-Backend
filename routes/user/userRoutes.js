@@ -3,7 +3,8 @@ const router = express.Router();
 const userSignUp = require("../../controller/userController/userLogin");
 const allProductForUser = require("../../controller/userController/userProducts");
 const getProductsByCategory = require("../../controller/userController/userDashboardProducts");
-const postUserOrderProduct = require('../../controller/userController/userProductOrder')
+const postUserOrderProduct = require("../../controller/userController/userProductOrder");
+const { getFilteredProducts } = require('../../controller/userController/userGetFilterProducts')
 const authorize = require("../../middlewares/userAuthorize");
 const {
     userGetProductsById,
@@ -120,7 +121,7 @@ router.get(
 router.get(
     "/get-ice-cream-category",
     authorize.authorize,
-    getProductsByCategory.userDashboardGetIceCreamCategory 
+    getProductsByCategory.userDashboardGetIceCreamCategory
 );
 
 router.post(
@@ -129,31 +130,12 @@ router.post(
     userGetProductsById
 );
 
-router.post('/order-items', authorize.authorize, postUserOrderProduct.userProductOrder)
+router.post(
+    "/order-items",
+    authorize.authorize,
+    postUserOrderProduct.userProductOrder
+);
+
+router.post('/filter-items', authorize.authorize, getFilteredProducts )
 
 module.exports = router;
-
-// const express = require("express");
-// const cors = require("cors");
-
-// const app = express();
-
-// // Allow requests from the emulator's IP address
-// app.use(
-//     cors({
-//         origin: "http://emulator_ip:port", // Replace with the emulator's IP address and port
-//     })
-// );
-
-// // Your API routes and other middleware setup here
-
-// const port = 3001; // Replace with your desired port number
-// app.listen(port, () => {
-//     console.log(`Server is running on port ${port}`);
-// });
-
-// router.get('/u', async (req, res)=>{
-//     const result = await sequelize.query(
-//         "CALL get_users()", {type: Sequelize.QueryTypes.RAW}, )
-//     console.log(result);
-// })
